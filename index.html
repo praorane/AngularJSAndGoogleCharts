@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="metrics">
+  <body ng-controller="MainCtrl">
+    <input type="file" 
+           id="fileInput" 
+           ng-hide="isJSONFileRead" 
+           onchange="angular.element(this).scope().uploadJSONFile()"/>
+    <div ng-show="isJSONFileRead" >
+      <select ng-change="updateMetricSelection()" 
+              ng-model="selectedmetric.id">
+         <option ng-repeat="item in metricTypes" 
+                 ng-value="item.id">{{item.name}}</option>
+      </select>
+ 
+      <div  metric-chart metric-object = "chartDisplayObject" metric-column = "selectedmetric.id"></div>
+    </div>
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script src="script.js"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"> </script>
+        <script type="text/javascript">
+            google.load('visualization', '1.0', { 'packages': ['corechart'] });
+        </script>
+  </body>
+</html>
